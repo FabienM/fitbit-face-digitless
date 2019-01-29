@@ -1,0 +1,73 @@
+.background {
+    viewport-fill: black;
+}
+
+#hours {
+    font-size: 55;
+    font-family: Seville-Bold-Condensed;
+    text-length: 20;
+    x: 5%;
+    y: 40%;
+}
+
+#minutes {
+    font-size: 45;
+    font-family: Seville-Condensed;
+    text-anchor: start;
+    x: 5%;
+    y: $-25;
+}
+
+#ampm {
+    font-size: 45;
+    font-family: Seville-Condensed;
+    text-length: 2;
+    text-anchor: end;
+    x: 95%;
+    y: $-50;
+}
+
+#day {
+    font-size: 25;
+    font-family: Seville-Bold-Condensed;
+    text-length: 3;
+    text-anchor: end;
+    x: 50%;
+    y: 90%;
+}
+
+#date {
+    font-size: 20;
+    font-family: Colfax-Regular;
+    text-length: 5;
+    text-anchor: start;
+    x: 50%;
+    y: 90%+1;
+}
+
+#hr {
+    y: $-2;
+    x: 20%-2;
+}
+
+#steps {
+    y: $-2;
+    x: 50%-2;
+}
+
+#cals {
+    y: $-2;
+    x: 80%-2;
+}
+
+.sensor {
+    font-size:18;
+}
+
+.colored {
+    fill: fb-aqua;
+}
+
+.contrasted {
+    fill: fb-white;
+}

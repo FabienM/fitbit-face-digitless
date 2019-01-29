@@ -1,0 +1,31 @@
+{
+  "fitbit": {
+    "appUUID": "c95aa4a1-712f-475e-93e0-2964b74445bb",
+    "appType": "clockface",
+    "appDisplayName": "digitless",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "white",
+    "licence": "GPL-3.0-or-later",
+    "requestedPermissions": ["access_heart_rate", "access_activity"],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "digitless"
+      },
+      "fr": {
+        "name": "digitless"
+      }
+    }
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~3.0.0",
+    "@fitbit/sdk-cli": "^1.0.0",
+    "fitbit-sdk-types": "^3.1.1"
+  },
+  "scripts": {
+    "build": "fitbit-build"
+  }
+}
