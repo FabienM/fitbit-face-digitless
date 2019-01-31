@@ -93,4 +93,7 @@ messaging.peerSocket.onmessage = function (evt) {
             updateSecondHand(lastDate);
         }
     }
+    if (evt.data.key === "disableMeridiem") {
+        ampmElement.style.opacity = evt.data.value ? 0 : 100;
+    }
 };
