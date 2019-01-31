@@ -4,9 +4,17 @@ A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/wat
 
 🇬🇧 🇫🇷
 
-![en](docs/screenshots/en.png)
-![fr](docs/screenshots/fr.png)
+##### Versa
 
+![en](docs/screenshots/en-versa.png)
+![fr](docs/screenshots/fr-versa.png)
+
+##### Ionic
+
+![en](docs/screenshots/en-ionic.png)
+![fr](docs/screenshots/fr-ionic.png)
+
+##### Settings
 ![settings](docs/screenshots/settings.jpg)
 
 ## License
