@@ -5,11 +5,15 @@ function settings(props: any) {
                 title={<Text bold align="center">Settings</Text>}>
                 <Toggle
                     settingsKey="disableSeconds"
-                    label="Bar does not extend with seconds"
+                    label="Disable second hand bar"
                 />
                 <Toggle
                     settingsKey="disableMeridiem"
-                    label="Disable meridiem indicator (12h format only)"
+                    label="Disable meridiem indicator"
+                />
+                <Toggle
+                    settingsKey="disableNeat"
+                    label="Disable neat screen"
                 />
                 <Text align="left">Background Color</Text>
                 <ColorSelect

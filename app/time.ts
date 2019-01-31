@@ -14,6 +14,10 @@ const weekdaysTable: {[k: string]: string[]} = {
     'en': ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
     'fr': ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
 };
+const midnightTable: {[k: string]: string} = {
+    'en': 'midnight',
+    'fr': 'minuit'
+};
 
 export function getDateInWordsInstance(is12h: boolean, date: Date, locale: string) {
     if (is12h) {
@@ -87,7 +91,7 @@ export class DateTimeInWords24h extends DateTimeInWords12h {
     }
 
     formatHours(): string {
-        return this.formatNumber(this.date.getHours()) || "midnight";
+        return this.formatNumber(this.date.getHours()) || midnightTable[this.language];
     }
 
     formatMinutes(): string {
