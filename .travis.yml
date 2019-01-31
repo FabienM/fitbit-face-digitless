@@ -16,3 +16,4 @@ deploy:
   draft: true
   on:
     repo: FabienM/fitbit-face-digitless
+    tags: true
