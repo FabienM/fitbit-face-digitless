@@ -76,3 +76,7 @@
 .contrasted {
     fill: fb-white;
 }
+
+.hide {
+    opacity: 0;
+}

@@ -15,6 +15,7 @@ A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/wat
 ![fr](docs/screenshots/fr-ionic.png)
 
 ##### Settings
+
 ![settings](docs/screenshots/settings.jpg)
 
 ## License
@@ -25,9 +26,16 @@ Design is exclusive property of [vurggodzns](https://www.facer.io/user/XLR9AscBP
 
 ## Features
 
-##### Second-hand
+##### Second-hand bar
 
-The middle bar grows with seconds.
+The middle bar grows with seconds from the middle of the screen.
+
+##### Neat first screen
+
+If activated, only the hours appear in a white font at screen wake-up.
+Middle bar, colors, indicators and date reveal on user "click".
+
+![neat](docs/screenshots/neat.png)
 
 ##### Customizable colors
 
@@ -39,14 +47,9 @@ Background and text colors are customizables.
 
 While the original design has pretty nice fonts, this version sticks to the defaults FitbitOS fonts, with a disappointing feeling.
 
-##### Cleaner first screen
-
-As in original design, only the hours should appear in a white font at screen wake-up.
-Middle bar, indicators and date should reveal on user "click". 
-
 ##### Customizable indicators
 
-Today, the heartrates, steps and calories indicators are hard-coded in this order.
+As of today, the heartrates, steps and calories indicators are hard-coded in this order.
 
 More indicators could be supported and reordering could be permitted.
 
