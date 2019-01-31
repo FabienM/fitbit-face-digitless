@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "8"
+  - "node"
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libsecret-1-0 libsecret-1-dev
+script:
+  - npm run-script build

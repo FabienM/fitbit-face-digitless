@@ -2,7 +2,7 @@
 
 A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).
 
-🇬🇧 🇫🇷
+🇬🇧 🇫🇷 [![Build Status](https://travis-ci.org/FabienM/fitbit-face-digitless.svg?branch=master)](https://travis-ci.org/FabienM/fitbit-face-digitless)
 
 ##### Versa
 
