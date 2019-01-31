@@ -7,3 +7,12 @@ before_install:
   - sudo apt-get install -y libsecret-1-0 libsecret-1-dev
 script:
   - npm run-script build
+deploy:
+  provider: releases
+  api_key:
+    secure: lvNB2A0YnI59fxK5t0dsDOdHBTKKsoJPYVgkeMuMXfv4zDfL7H/EkVJe3MJimSlSiTCDmyS8C7UCxKno3StNMUYldj632dQ82Jco0y8N1gwR6IsjnobyXNMfw6a4sLZwZXfgCXDR3wWJX0/1ZX3xnG5cIcQrlbrwzJk1zQF6P72tjwjEMSK8N/CzolzRi29+O8Bba1TAh7LZ+HG3lsKgzvYQcCiG7iXfSHFiJRzGA+j4BEpX327VgwO0GjzVApw3SFOYfTG+1JlXZKvK4XTC7DO1wGmMkutJO0h69DVwYB8pgaOKgIG2JX7DTPq892+CF1w9FZc5gMC2x5xEzf3G4KsQjgtkG76a/D04/rSNZLb5QepOL/CRYZO59X1zCxqmhvvKXDj7Hd0m+LE7xGExEcT73tVr8FkVvsOE3OBHS5R6kCQvydGhYOGSrNZkB8l11sKIk9npWXUokVAnpWzxY3id41kXaOdKdMj75JD0KGgDU/MxySiGg+WkI5cYBDmf6VWt8iybYHZ9B2T33s94CFhOq67KlRZ2tMEgr+GQg1tKn8cCJmeYbLkRMSilsof8u5ky6l9u+XaPP3zRU4xhSMyV20LiUe3Uu5SBWOf3uD5MAHRrZ0XBWX0LioZMoaUawqnMalcJVF67+fmlwkbcYRP5UKsTocEJPRPTUZ62v4U=
+  file: build/app.fba
+  skip_cleanup: true
+  draft: true
+  on:
+    repo: FabienM/fitbit-face-digitless
