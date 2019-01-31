@@ -4,7 +4,7 @@
     "appType": "clockface",
     "appDisplayName": "digitless",
     "iconFile": "resources/icon.png",
-    "wipeColor": "white",
+    "wipeColor": "#00E1AA",
     "licence": "GPL-3.0-or-later",
     "requestedPermissions": ["access_heart_rate", "access_activity"],
     "buildTargets": [
