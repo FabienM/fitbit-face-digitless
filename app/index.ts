@@ -6,6 +6,7 @@ import {me} from "appbit";
 import {BodyPresenceSensor} from "body-presence";
 import {HeartRateSensor} from "heart-rate";
 import {today} from "user-activity";
+import * as messaging from "messaging";
 
 // Update the clock every minute
 clock.granularity = "seconds";
@@ -22,6 +23,21 @@ const hrElement = document.getElementById("hr") as TextElement;
 const stepsElement = document.getElementById("steps") as TextElement;
 const calsElement = document.getElementById("cals") as TextElement;
 
+const backgroundElements = document.getElementsByClassName("background");
+const coloredElements = document.getElementsByClassName("colored");
+
+let lastDate: Date;
+
+function updateSecondHand(date: Date) {
+    let middle = rootElement.width / 2;
+    let secondHand = .90 * middle;
+    if (clock.granularity === "seconds") {
+        secondHand = Math.floor(date.getSeconds() * secondHand / 60);
+    }
+    sepElement.x1 = middle - secondHand;
+    sepElement.x2 = middle + secondHand;
+}
+
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
     let dateInWords = getDateInWordsInstance(preferences.clockDisplay === "12h", evt.date, locale.language);
@@ -32,13 +48,10 @@ clock.ontick = (evt) => {
     dateElement.text = dateInWords.formatDate();
     stepsElement.text = today.adjusted.steps ? `${today.adjusted.steps}` : "-";
     calsElement.text = today.adjusted.calories ? `${today.adjusted.calories}` : "-";
-    if (clock.granularity == "seconds") {
-        let middle = rootElement.width / 2;
-        let halfBarSize = Math.floor(evt.date.getSeconds() * middle * .90 / 60);
-        sepElement.x1 = middle - halfBarSize;
-        sepElement.x2 = middle + halfBarSize;
-    }
-}
+    lastDate = evt.date;
+
+    updateSecondHand(lastDate);
+};
 
 let body: BodyPresenceSensor;
 let hrm: HeartRateSensor;
@@ -47,6 +60,7 @@ if (me.permissions.granted("access_heart_rate")) {
     hrm = new HeartRateSensor({frequency: 3});
     hrm.onreading = () => {
         hrElement.text = `${hrm.heartRate}`;
+        hrm.timestamp
     };
 }
 if (me.permissions.granted("access_activity")) {
@@ -61,3 +75,22 @@ if (me.permissions.granted("access_activity")) {
     };
     body.start();
 }
+
+messaging.peerSocket.onmessage = function (evt) {
+    if (evt.data.key === "backgroundColor") {
+        backgroundElements.forEach(value => {
+            ((value as unknown) as Styled).style.fill = evt.data.value;
+        });
+    }
+    if (evt.data.key === "foregroundColor") {
+        coloredElements.forEach(value => {
+            ((value as unknown) as Styled).style.fill = evt.data.value;
+        });
+    }
+    if (evt.data.key === "disableSeconds") {
+        clock.granularity = evt.data.value ? "minutes" : "seconds";
+        if (evt.data.value) {
+            updateSecondHand(lastDate);
+        }
+    }
+};
