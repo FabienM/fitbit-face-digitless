@@ -19,11 +19,11 @@ Design is exclusive property of [vurggodzns](https://www.facer.io/user/XLR9AscBP
 
 ##### Second-hand
 
-The middle bar grow with seconds.
+The middle bar grows with seconds.
 
 ##### Customizable colors
 
-Background and text colors are customisables.
+Background and text colors are customizables.
 
 ## Future enhancements
 
