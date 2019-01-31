@@ -7,6 +7,10 @@ function settings(props: any) {
                     settingsKey="disableSeconds"
                     label="Bar does not extend with seconds"
                 />
+                <Toggle
+                    settingsKey="disableMeridiem"
+                    label="Disable meridiem indicator (12h format only)"
+                />
                 <Text align="left">Background Color</Text>
                 <ColorSelect
                     settingsKey="backgroundColor"
