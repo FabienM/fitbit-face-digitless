@@ -6,7 +6,10 @@
     "iconFile": "resources/icon.png",
     "wipeColor": "#00E1AA",
     "licence": "GPL-3.0-or-later",
-    "requestedPermissions": ["access_heart_rate", "access_activity"],
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_activity"
+    ],
     "buildTargets": [
       "higgs",
       "meson"
@@ -27,5 +30,24 @@
   },
   "scripts": {
     "build": "fitbit-build"
-  }
+  },
+  "name": "fitbit-face-digitless",
+  "description": "A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabienM/fitbit-face-digitless.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FabienM/fitbit-face-digitless/issues"
+  },
+  "homepage": "https://github.com/FabienM/fitbit-face-digitless#readme"
 }
