@@ -18,12 +18,21 @@ const midnightTable: {[k: string]: string} = {
     'en': 'midnight',
     'fr': 'minuit'
 };
+const supportedLanguages: {[k: string]: boolean} = {
+    'en': true,
+    'fr': true
+};
+const defaultLanguage: string = 'en';
 
 export function getDateInWordsInstance(is12h: boolean, date: Date, locale: string) {
-    if (is12h) {
-        return new DateTimeInWords12h(date, locale);
+    let language = locale.split('-')[0];
+    if (!supportedLanguages[language]) {
+        language = defaultLanguage;
     }
-    return new DateTimeInWords24h(date, locale);
+    if (is12h) {
+        return new DateTimeInWords12h(date, language);
+    }
+    return new DateTimeInWords24h(date, language);
 }
 
 export class DateTimeInWords12h {
@@ -34,7 +43,7 @@ export class DateTimeInWords12h {
     constructor(date: Date, language:string) {
         this.date = date;
         this.pm = date.getHours() >= 12;
-        this.language = language.split('-')[0];
+        this.language = language;
     }
 
     protected formatNumber(n: number): string {
