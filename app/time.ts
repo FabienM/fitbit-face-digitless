@@ -1,26 +1,32 @@
-const onesTable: {[k: string]: string[]} = {
+const onesTable: { [k: string]: string[] } = {
     'en': ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
-    'fr': ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf']
+    'fr': ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf'],
+    'it': ['', 'uno', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette', 'otto', 'nove'],
 };
-const teensTable: {[k: string]: string[]} = {
+const teensTable: { [k: string]: string[] } = {
     'en': ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
-    'fr': ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf']
+    'fr': ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'],
+    'it': ['dieci', 'undici', 'dodici', 'tredici', 'quattordici', 'quindici', 'sedici', 'diciassette', 'diciotto', 'diciannove'],
 };
-const tensTable: {[k: string]: string[]} = {
+const tensTable: { [k: string]: string[] } = {
     'en': ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty'],
-    'fr': ['', 'dix', 'vingt', 'trente', 'quarante', 'cinquante']
+    'fr': ['', 'dix', 'vingt', 'trente', 'quarante', 'cinquante'],
+    'it': ['', 'dieci', 'venti', 'trenta', 'quaranta', 'cinquanta'],
 };
-const weekdaysTable: {[k: string]: string[]} = {
+const weekdaysTable: { [k: string]: string[] } = {
     'en': ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
     'fr': ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+    'it': ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'],
 };
-const midnightTable: {[k: string]: string} = {
+const midnightTable: { [k: string]: string } = {
     'en': 'midnight',
-    'fr': 'minuit'
+    'fr': 'minuit',
+    'it': 'mezzanotte',
 };
-const supportedLanguages: {[k: string]: boolean} = {
+const supportedLanguages: { [k: string]: boolean } = {
     'en': true,
-    'fr': true
+    'fr': true,
+    'it': true,
 };
 const defaultLanguage: string = 'en';
 
@@ -40,7 +46,7 @@ export class DateTimeInWords12h {
     protected date: Date;
     protected language: string;
 
-    constructor(date: Date, language:string) {
+    constructor(date: Date, language: string) {
         this.date = date;
         this.pm = date.getHours() >= 12;
         this.language = language;
@@ -61,6 +67,15 @@ export class DateTimeInWords12h {
         if (this.language === 'fr' && units === 1) {
             return `${tensTable[this.language][tens]} et ${onesTable[this.language][units]}`;
         }
+        if (this.language === 'it') {
+            if (units === 3) {
+                return `${tensTable[this.language][tens]}tré`;
+            }
+            if (units === 1 || units === 8) {
+                return `${tensTable[this.language][tens].slice(0, -1)}${onesTable[this.language][units]}`;
+            }
+            return `${tensTable[this.language][tens]}${onesTable[this.language][units]}`;
+        }
         return `${tensTable[this.language][tens]} ${onesTable[this.language][units]}`;
     }
 
@@ -69,7 +84,7 @@ export class DateTimeInWords12h {
     }
 
     formatMinutes(): string {
-        if(this.date.getMinutes() === 0) {
+        if (this.date.getMinutes() === 0) {
             return " ";
         }
         return this.formatNumber(this.date.getMinutes());
@@ -87,8 +102,10 @@ export class DateTimeInWords12h {
     }
 
     formatDate(): string {
-        if (this.language == 'fr') {
-            return `${zeroPad(this.date.getDate())}/${zeroPad(this.date.getMonth() + 1)}`;
+        switch (this.language) {
+            case 'fr':
+            case 'it':
+                return `${zeroPad(this.date.getDate())}/${zeroPad(this.date.getMonth() + 1)}`;
         }
         return `${this.date.getMonth() + 1}.${this.date.getDate()}`;
     }
