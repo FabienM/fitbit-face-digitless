@@ -1,13 +1,13 @@
 import clock from "clock";
 import document from "document";
 import {locale, preferences} from "user-settings";
-import {getDateInWordsInstance} from "./time";
 import {me} from "appbit";
 import {BodyPresenceSensor} from "body-presence";
 import {HeartRateSensor} from "heart-rate";
 import {today} from "user-activity";
-import * as messaging from "messaging";
 import {display} from "display";
+import {onSettingChange} from "./settings";
+import {getDateInWordsInstance} from "./time";
 
 // Update the clock every minute
 clock.granularity = "seconds";
@@ -91,34 +91,22 @@ if (me.permissions.granted("access_activity")) {
     body.start();
 }
 
-messaging.peerSocket.onmessage = evt => {
-    switch (evt.data.key) {
-        case "backgroundColor":
-            backgroundElements.forEach(value => {
-                ((value as unknown) as Styled).style.fill = evt.data.value;
-            });
-            break;
-        case "foregroundColor":
-            foregroundColor = evt.data.value;
-            coloredElements.forEach(value => {
-                ((value as unknown) as Styled).style.fill = evt.data.value;
-            });
-            break;
-        case "disableSeconds":
-            clock.granularity = evt.data.value ? "minutes" : "seconds";
-            if (evt.data.value) {
-                updateSecondHand(lastDate);
-            }
-            break;
-        case "disableMeridiem":
-            ampmElement.style.opacity = evt.data.value ? 0 : 1;
-            break;
-        case "disableNeat":
-            enableNeat = !evt.data.value;
-            toggleDisplay(evt.data.value);
-            break;
+onSettingChange(s => {
+    backgroundElements.forEach(value => {
+        ((value as unknown) as Styled).style.fill = s.bgColor;
+    });
+    foregroundColor = s.fgColor;
+    coloredElements.forEach(value => {
+        ((value as unknown) as Styled).style.fill = s.fgColor;
+    });
+    clock.granularity = s.disableSeconds ? "minutes" : "seconds";
+    if (s.disableSeconds) {
+        updateSecondHand(lastDate);
     }
-};
+    ampmElement.style.opacity = s.disableMeridiem ? 0 : 1;
+    enableNeat = !s.disableNeat;
+    toggleDisplay(s.disableNeat);
+});
 
 display.onchange = () => {
     enableNeat && toggleDisplay(false);
