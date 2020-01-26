@@ -3,7 +3,7 @@ import document from "document";
 import {locale, preferences} from "user-settings";
 import {me} from "appbit";
 import {BodyPresenceSensor} from "body-presence";
-import {HeartRateSensor} from "heart-rate";
+import {HeartRateSensor, HeartRateSensorReading} from "heart-rate";
 import {today} from "user-activity";
 import {display} from "display";
 import {onSettingChange} from "./settings";
@@ -71,14 +71,14 @@ clock.ontick = (evt) => {
 let body: BodyPresenceSensor;
 let hrm: HeartRateSensor;
 
-if (me.permissions.granted("access_heart_rate")) {
+if (me.permissions.granted("access_heart_rate") && HeartRateSensor) {
     hrm = new HeartRateSensor({frequency: 3});
     hrm.onreading = () => {
         hrElement.text = `${hrm.heartRate}`;
         hrm.timestamp
     };
 }
-if (me.permissions.granted("access_activity")) {
+if (me.permissions.granted("access_activity") && BodyPresenceSensor) {
     body = new BodyPresenceSensor();
     body.onreading = () => {
         if (!body.present) {
