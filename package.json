@@ -47,7 +47,7 @@
   "scripts": {
     "build": "fitbit-build",
     "lint": "eslint --ext .js,.ts app companion",
-    "fitbit": "fitbit",
+    "fitbit": "fitbit"
   },
   "name": "fitbit-face-digitless",
   "description": "A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).",
