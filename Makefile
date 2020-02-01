@@ -1,10 +1,13 @@
-build: lint
+build: install lint
 	npm run build
 
-fitbit:
+install:
+	npm ci
+
+fitbit: install
 	npm run fitbit
 
-lint:
+lint: install
 	npm run lint
 
-.PHONY: build lint fitbit
+.PHONY: build lint fitbit ci
