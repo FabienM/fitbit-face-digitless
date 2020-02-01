@@ -28,10 +28,27 @@
   "devDependencies": {
     "@fitbit/sdk": "^4.1.0",
     "@fitbit/sdk-cli": "^1.7.1",
-    "fitbit-sdk-types": "^4.3.2"
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-jsdoc": "^18.4.4",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prefer-arrow": "^1.1.7",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "fitbit-sdk-types": "^4.3.2",
+    "tslint": "^5.20.1",
+    "tslint-eslint-rules": "^5.4.0"
   },
   "scripts": {
-    "build": "fitbit-build"
+    "build": "fitbit-build",
+    "lint": "eslint --ext .js,.ts app companion",
+    "fitbit": "fitbit",
+    "install": "fitbit build-and-install"
   },
   "name": "fitbit-face-digitless",
   "description": "A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).",
@@ -46,7 +63,7 @@
     "url": "git+https://github.com/FabienM/fitbit-face-digitless.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "FabienM",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/FabienM/fitbit-face-digitless/issues"
