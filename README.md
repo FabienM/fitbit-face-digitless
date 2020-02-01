@@ -66,8 +66,7 @@ Prerequisites: Node.js 10.x+
 ```
 git clone https://github.com/FabienM/fitbit-face-digitless.git
 cd fitbit-face-digitless
-npm install
-npm run-script build
+make
 ```
 
 You can read Fitbit's [CLI Reference](https://dev.fitbit.com/build/guides/command-line-interface/#building-and-installing-your-project)
