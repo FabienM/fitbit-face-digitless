@@ -8,6 +8,8 @@ import { today } from 'user-activity'
 import { display } from 'display'
 import { onSettingChange } from './settings'
 import { getDateFormatter } from './time'
+import { gettext } from 'i18n'
+import { formatDate } from './i18n'
 
 // Update the clock every minute
 clock.granularity = 'seconds'
@@ -67,8 +69,8 @@ clock.ontick = (evt): void => {
   hoursElement.text = dateInWords.formatHours()
   minsElement.text = dateInWords.formatMinutes()
   ampmElement.text = dateInWords.formatAmPm()
-  dayElement.text = dateInWords.formatWeekday()
-  dateElement.text = dateInWords.formatDate()
+  dayElement.text = gettext(`weekday_${evt.date.getDay()}`)
+  dateElement.text = formatDate(evt.date, locale.language)
   stepsElement.text = today.adjusted.steps ? `${today.adjusted.steps}` : '-'
   calsElement.text = today.adjusted.calories ? `${today.adjusted.calories}` : '-'
   lastDate = evt.date
