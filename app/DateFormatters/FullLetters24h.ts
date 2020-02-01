@@ -1,9 +1,10 @@
 import { FullLetters12h } from './FullLetters12h'
-import { midnightTable } from '../i18n'
+import { gettext } from 'i18n'
+import { DateFormatterInterface } from './DateFormatterInterface'
 
-export class DateTimeInWords24h extends FullLetters12h {
+export class FullLetters24h extends FullLetters12h implements DateFormatterInterface {
   formatHours(): string {
-    return this.formatNumber(this.date.getHours()) || midnightTable[this.language]
+    return this.formatNumber(this.date.getHours()) || gettext('midnight')
   }
 
   formatMinutes(): string {

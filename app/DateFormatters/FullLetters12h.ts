@@ -1,7 +1,11 @@
 import zeroPad from '../utils'
-import { onesTable, teensTable, tensTable, weekdaysTable } from '../i18n'
+import { gettext } from 'i18n'
+import { DateFormatterInterface } from './DateFormatterInterface'
 
-export class FullLetters12h {
+const LOCALE_FR = 'fr-fr'
+const LOCALE_IT = 'it-it'
+
+export class FullLetters12h implements DateFormatterInterface {
   protected pm: boolean
   protected date: Date
   protected language: string
@@ -15,29 +19,32 @@ export class FullLetters12h {
   protected formatNumber(n: number): string {
     const units = n % 10
     const tens = Math.floor(n / 10)
+    const unitsTrans = gettext(`units_${units}`)
+    const teensTrans = gettext(`teens_${units}`)
+    const tensTrans = gettext(`tens_${tens}`)
 
     if (units === 0) {
-      return tensTable[this.language][tens]
+      return tensTrans
     }
     switch (tens) {
       case 0:
-        return onesTable[this.language][units]
+        return unitsTrans
       case 1:
-        return teensTable[this.language][units]
+        return teensTrans
     }
-    if (this.language === 'fr' && units === 1) {
-      return `${tensTable[this.language][tens]} et ${onesTable[this.language][units]}`
+    if (this.language === LOCALE_FR && units === 1) {
+      return `${tensTrans} et ${unitsTrans}`
     }
-    if (this.language === 'it') {
+    if (this.language === LOCALE_IT) {
       if (units === 3) {
-        return `${tensTable[this.language][tens]}tré`
+        return `${tensTrans}tré`
       }
       if (units === 1 || units === 8) {
-        return `${tensTable[this.language][tens].slice(0, -1)}${onesTable[this.language][units]}`
+        return `${tensTrans.slice(0, -1)}${unitsTrans}`
       }
-      return `${tensTable[this.language][tens]}${onesTable[this.language][units]}`
+      return `${tensTrans}${unitsTrans}`
     }
-    return `${tensTable[this.language][tens]} ${onesTable[this.language][units]}`
+    return `${tensTrans} ${unitsTrans}`
   }
 
   formatHours(): string {
@@ -59,7 +66,7 @@ export class FullLetters12h {
   }
 
   formatWeekday(): string {
-    return weekdaysTable[this.language][this.date.getDay()]
+    return gettext(`weekday_${this.date.getDay()}`)
   }
 
   formatDate(): string {
