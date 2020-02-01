@@ -1,25 +1,73 @@
-export const onesTable: { [k: string]: string[] } = {
-  en: ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
-  fr: ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf'],
-  it: ['', 'uno', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette', 'otto', 'nove'],
+import { gettext } from 'i18n'
+import zeroPad from './utils'
+
+const LOCALE_FR = 'fr-fr'
+const LOCALE_IT = 'it-it'
+
+/**
+ *
+ */
+export function formatDate(date: Date, locale: string): string {
+  switch (locale) {
+    case LOCALE_FR:
+    case LOCALE_IT:
+      return `${zeroPad(date.getDate())}/${zeroPad(date.getMonth() + 1)}`
+  }
+  return `${date.getMonth() + 1}.${date.getDate()}`
 }
-export const teensTable: { [k: string]: string[] } = {
-  en: ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
-  fr: ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'],
-  it: ['dieci', 'undici', 'dodici', 'tredici', 'quattordici', 'quindici', 'sedici', 'diciassette', 'diciotto', 'diciannove'],
+
+/**
+ * @param n
+ * @param locale
+ */
+export function formatNumber(n: number, locale: string) {
+  const units = n % 10
+  const tens = Math.floor(n / 10)
+  const unitsTrans = gettext(`units_${units}`)
+  const teensTrans = gettext(`teens_${units}`)
+  const tensTrans = gettext(`tens_${tens}`)
+
+  if (units === 0) {
+    return tensTrans
+  }
+  switch (tens) {
+    case 0:
+      return unitsTrans
+    case 1:
+      return teensTrans
+  }
+
+  switch (locale) {
+    case LOCALE_FR:
+      return formatFR(unitsTrans, tensTrans)
+    case LOCALE_IT:
+      return formatIT(unitsTrans, tensTrans)
+  }
+
+  return `${tensTrans} ${unitsTrans}`
 }
-export const tensTable: { [k: string]: string[] } = {
-  en: ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty'],
-  fr: ['', 'dix', 'vingt', 'trente', 'quarante', 'cinquante'],
-  it: ['', 'dieci', 'venti', 'trenta', 'quaranta', 'cinquanta'],
+
+/**
+ * @param unitsTrans
+ * @param tensTrans
+ */
+function formatFR(unitsTrans: string, tensTrans: string): string {
+  if (unitsTrans === 'un') {
+    return `${tensTrans} et ${unitsTrans}`
+  }
+  return `${tensTrans}-${unitsTrans}`
 }
-export const weekdaysTable: { [k: string]: string[] } = {
-  en: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-  fr: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-  it: ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'],
-}
-export const midnightTable: { [k: string]: string } = {
-  en: 'midnight',
-  fr: 'minuit',
-  it: 'mezzanotte',
+
+/**
+ * @param unitsTrans
+ * @param tensTrans
+ */
+function formatIT(unitsTrans: string, tensTrans: string): string {
+  if (unitsTrans === 'tre') {
+    return `${tensTrans}tré`
+  }
+  if (unitsTrans === 'uno' || unitsTrans === 'otto') {
+    return `${tensTrans.slice(0, -1)}${unitsTrans}`
+  }
+  return `${tensTrans}${unitsTrans}`
 }
