@@ -1,5 +1,5 @@
 import zeroPad from '../utils'
-import { onesTable, teensTable, tensTable, weekdaysTable } from '../time'
+import { onesTable, teensTable, tensTable, weekdaysTable } from '../i18n'
 
 export class FullLetters12h {
   protected pm: boolean

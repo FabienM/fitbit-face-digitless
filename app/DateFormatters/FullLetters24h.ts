@@ -1,5 +1,5 @@
 import { FullLetters12h } from './FullLetters12h'
-import { midnightTable } from '../time'
+import { midnightTable } from '../i18n'
 
 export class DateTimeInWords24h extends FullLetters12h {
   formatHours(): string {

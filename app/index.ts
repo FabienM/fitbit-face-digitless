@@ -7,7 +7,7 @@ import { HeartRateSensor } from 'heart-rate'
 import { today } from 'user-activity'
 import { display } from 'display'
 import { onSettingChange } from './settings'
-import { getDateInWordsInstance } from './time'
+import { getDateFormatter } from './time'
 
 // Update the clock every minute
 clock.granularity = 'seconds'
@@ -62,7 +62,7 @@ function toggleDisplay(on: boolean): void {
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt): void => {
-  const dateInWords = getDateInWordsInstance(preferences.clockDisplay === '12h', evt.date, locale.language)
+  const dateInWords = getDateFormatter(preferences.clockDisplay === '12h', evt.date, locale.language)
 
   hoursElement.text = dateInWords.formatHours()
   minsElement.text = dateInWords.formatMinutes()
