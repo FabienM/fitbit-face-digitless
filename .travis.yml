@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-  - "8"
   - "10"
 before_install:
   - sudo apt-get update
   - sudo apt-get install -y libsecret-1-0 libsecret-1-dev
 script:
-  - npm run-script build
+  - make build
 deploy:
   provider: releases
   api_key:

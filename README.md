@@ -57,18 +57,17 @@ More indicators could be supported and reordering could be permitted.
 
 ##### More languages
 
-At the time being, only english and french are supported. More languages should come.
+At the time being, only english, french and italian are supported. More languages should come.
 
 ## How to build
 
-Prerequisites: Node.js 8.x+
+Prerequisites: Node.js 10.x+
 
 ```
 git clone https://github.com/FabienM/fitbit-face-digitless.git
 cd fitbit-face-digitless
-npm install
-npm run-script build
+make
 ```
 
 You can read Fitbit's [CLI Reference](https://dev.fitbit.com/build/guides/command-line-interface/#building-and-installing-your-project)
-to learn how to build and deploy this face to your device. 
+to learn how to build and deploy this face to your device.
