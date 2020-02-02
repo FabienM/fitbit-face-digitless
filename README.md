@@ -8,13 +8,15 @@ A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/wat
 
 ![en](docs/screenshots/en-versa.png)
 ![fr](docs/screenshots/fr-versa.png)
-![fr](docs/screenshots/it-versa.png)
+![it](docs/screenshots/it-versa.png)
+![de](docs/screenshots/de-versa.png)
 
 ##### Ionic
 
 ![en](docs/screenshots/en-ionic.png)
 ![fr](docs/screenshots/fr-ionic.png)
-![fr](docs/screenshots/it-ionic.png)
+![it](docs/screenshots/it-ionic.png)
+![de](docs/screenshots/de-ionic.png)
 
 ##### Settings
 
