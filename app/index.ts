@@ -9,7 +9,7 @@ import { display } from 'display'
 import { onSettingChange } from './settings'
 import { getDateFormatter } from './time'
 import { gettext } from 'i18n'
-import { formatDate } from './i18n'
+import { formatDate, LOCALE_DE } from './i18n'
 
 // Update the clock every minute
 clock.granularity = 'seconds'
@@ -35,6 +35,11 @@ const hiddenElements = document.getElementsByClassName('hide')
 let enableNeat = true
 let lastDate: Date
 let foregroundColor = 'fb-aqua'
+
+if (locale.language === LOCALE_DE) {
+  hoursElement.style.fontSize = 45
+  minsElement.style.fontSize = 35
+}
 
 /**
  * @param date

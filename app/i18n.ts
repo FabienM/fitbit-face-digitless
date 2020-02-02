@@ -1,19 +1,20 @@
 import { gettext } from 'i18n'
 import zeroPad from './utils'
 
-const LOCALE_FR = 'fr-fr'
-const LOCALE_IT = 'it-it'
+export const LOCALE_FR = 'fr-fr'
+export const LOCALE_EN = 'en-us'
+export const LOCALE_IT = 'it-it'
+export const LOCALE_DE = 'de-de'
 
 /**
- *
+ * @param date
+ * @param locale
  */
 export function formatDate(date: Date, locale: string): string {
-  switch (locale) {
-    case LOCALE_FR:
-    case LOCALE_IT:
-      return `${zeroPad(date.getDate())}/${zeroPad(date.getMonth() + 1)}`
+  if (locale === LOCALE_EN) {
+    return `${date.getMonth() + 1}.${date.getDate()}`
   }
-  return `${date.getMonth() + 1}.${date.getDate()}`
+  return `${zeroPad(date.getDate())}/${zeroPad(date.getMonth() + 1)}`
 }
 
 /**
@@ -42,6 +43,8 @@ export function formatNumber(n: number, locale: string) {
       return formatFR(unitsTrans, tensTrans)
     case LOCALE_IT:
       return formatIT(unitsTrans, tensTrans)
+    case LOCALE_DE:
+      return formatDE(unitsTrans, tensTrans)
   }
 
   return `${tensTrans} ${unitsTrans}`
@@ -56,6 +59,17 @@ function formatFR(unitsTrans: string, tensTrans: string): string {
     return `${tensTrans} et ${unitsTrans}`
   }
   return `${tensTrans}-${unitsTrans}`
+}
+
+/**
+ * @param unitsTrans
+ * @param tensTrans
+ */
+function formatDE(unitsTrans: string, tensTrans: string): string {
+  if (unitsTrans === 'eins') {
+    return `einund${tensTrans}`
+  }
+  return `${unitsTrans}und${tensTrans}`
 }
 
 /**

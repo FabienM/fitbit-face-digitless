@@ -2,7 +2,7 @@
 
 A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).
 
-🇬🇧 🇫🇷 🇮🇹[![Build Status](https://travis-ci.org/FabienM/fitbit-face-digitless.svg?branch=master)](https://travis-ci.org/FabienM/fitbit-face-digitless)
+🇬🇧🇫🇷🇮🇹🇩🇪[![Build Status](https://travis-ci.org/FabienM/fitbit-face-digitless.svg?branch=master)](https://travis-ci.org/FabienM/fitbit-face-digitless)
 
 ##### Versa
 
@@ -54,10 +54,6 @@ While the original design has pretty nice fonts, this version sticks to the defa
 As of today, the heartrates, steps and calories indicators are hard-coded in this order.
 
 More indicators could be supported and reordering could be permitted.
-
-##### More languages
-
-At the time being, only english, french and italian are supported. More languages should come.
 
 ## How to build
 
