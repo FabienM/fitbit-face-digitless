@@ -51,7 +51,7 @@
   },
   "name": "fitbit-face-digitless",
   "description": "A Fitbit clock face inspired by vurggodzns' [digitless](https://www.facer.io/watchface/kKMuqp1O4v).",
-  "version": "1.3.0-pre.0",
+  "version": "1.3.0",
   "main": "index.js",
   "directories": {
     "doc": "docs"
