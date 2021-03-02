@@ -28,7 +28,8 @@ function settings(props: any) {
                         {color: '#134022'}, // fb-green-press
                         {color: 'darkgreen'},
                         {color: 'darkolivegreen'},
-                        {color: 'darkred'}
+                        {color: 'darkred'},
+                        {color: 'white'},
                     ]}
                 />
                 <Text align="left">Foreground Color</Text>
